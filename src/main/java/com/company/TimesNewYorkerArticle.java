@@ -17,5 +17,24 @@ public class TimesNewYorkerArticle {
         this.date = new SimpleDateFormat("EEE.  d, yyyy").parse(date);
         this.url = url;
     }
-    
+
+    public Date getDate() {
+        return date;
+    }
+
+    public String getSupport_text() {
+        return support_text;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getUrl() {
+        return url;
+    }
 }
