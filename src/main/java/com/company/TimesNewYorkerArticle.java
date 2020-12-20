@@ -14,7 +14,7 @@ public class TimesNewYorkerArticle {
         this.title = title;
         this.support_text = support_text;
         this.author = author;
-        this.date = new SimpleDateFormat("EEE.  d, yyyy").parse(date);
+        this.date = new SimpleDateFormat("dd.MM.yyyy").parse(date);
         this.url = url;
     }
 
