@@ -29,7 +29,6 @@ public class Main {
         try {
             PrintStream out = new PrintStream(new FileOutputStream("new_york_times_tech_articles.txt"));
             for (TimesNewYorkerArticle article : articles) {
-                System.out.println(article.getTitle());
                 out.println(article.getTitle());
                 out.println(article.getSupportText());
                 out.println(article.getAuthor());
