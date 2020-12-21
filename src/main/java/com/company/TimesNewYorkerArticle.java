@@ -11,16 +11,11 @@ public class TimesNewYorkerArticle {
     private String url;
 
     TimesNewYorkerArticle(String title, String support_text, String author, String date, String url) throws java.text.ParseException {
-        try {
-            this.title = title;
-            this.support_text = support_text;
-            this.author = author;
-            this.date = new SimpleDateFormat("dd.MM.yyyy").parse(date);
-            this.url = url;
-        }
-        catch (java.text.ParseException e){
-            e.printStackTrace();
-        }
+        this.title = title;
+        this.support_text = support_text;
+        this.author = author;
+        this.date = new SimpleDateFormat("dd.MM.yyyy").parse(date);
+        this.url = url;
     }
 
     public Date getDate() {
