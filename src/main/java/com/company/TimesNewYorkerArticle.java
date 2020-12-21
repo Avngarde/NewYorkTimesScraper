@@ -22,7 +22,7 @@ public class TimesNewYorkerArticle {
         return date;
     }
 
-    public String getSupport_text() {
+    public String getSupportText() {
         return support_text;
     }
 
