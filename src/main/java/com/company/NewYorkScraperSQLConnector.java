@@ -15,7 +15,8 @@ public class NewYorkScraperSQLConnector {
         connection = conn;
     }
 
-    public void saveToDB(ArrayList<TimesNewYorkerArticle> articles) {
+    public void saveToDB(ArrayList<TimesNewYorkerArticle> articles) throws SQLException {
+        Statement stmt = connection.createStatement();
         for (TimesNewYorkerArticle article : articles) {
             String sql = String.format("INSERT INTO news(title, support_text, author, date, url) VALUES (%s, %s, %s, %s, %s)",
                     article.getTitle(),
@@ -23,8 +24,7 @@ public class NewYorkScraperSQLConnector {
                     article.getAuthor(),
                     article.getDate(),
                     article.getUrl());
-
-            Statement stm;
+            stmt.executeUpdate(sql);
         }
     }
 }
