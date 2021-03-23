@@ -3,10 +3,8 @@ package com.company;
 import org.jsoup.*;
 import org.jsoup.nodes.*;
 import org.jsoup.select.Elements;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintStream;
-import java.io.FileNotFoundException;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 
@@ -25,26 +23,16 @@ public class Main {
         return false;
     }
 
-    public static void saveArticlesToFile(ArrayList<TimesNewYorkerArticle> articles) throws FileNotFoundException {
+    public static void saveArticlesToDB(ArrayList<TimesNewYorkerArticle> articles) throws SQLException, IllegalAccessException, InstantiationException, ClassNotFoundException {
         try {
-            PrintStream out = new PrintStream(new FileOutputStream("new_york_times_tech_articles.txt"));
-            for (TimesNewYorkerArticle article : articles) {
-                out.println(article.getTitle());
-                out.println(article.getSupportText());
-                out.println(article.getAuthor());
-                out.println(article.getDate().toString());
-                out.println(article.getUrl());
-                out.println("-------------------------------------------------");
-            }
-            out.close();
-        }
-
-        catch (FileNotFoundException e){
-            e.printStackTrace();
+            NewYorkScraperSQLConnector connector = new NewYorkScraperSQLConnector();
+            connector.saveToDB(articles);
+        } catch (SQLException err) {
+            throw err;
         }
     }
 
-    public static void main(String[] args) throws IOException, ParseException {
+    public static void main(String[] args) throws IOException, ParseException, SQLException, IllegalAccessException, ClassNotFoundException, InstantiationException {
         ArrayList<TimesNewYorkerArticle> articles = new ArrayList<TimesNewYorkerArticle>();
         Document doc = Jsoup.connect("https://www.nytimes.com/section/technology").get();
         Elements scrapped_articles = doc.select("div.css-1cp3ece");
@@ -70,7 +58,7 @@ public class Main {
             }
         }
 
-        saveArticlesToFile(articles);
+        saveArticlesToDB(articles);
         System.out.println("Articles scraped properly!");
     }
 }
